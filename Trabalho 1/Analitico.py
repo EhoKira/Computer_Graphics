@@ -1,7 +1,7 @@
 import pygame
 import sys
 
-WIDTH, HEIGHT = 500, 500
+WIDTH, HEIGHT = 300, 300
 BG_COLOR = (255, 255, 255)  # Cor de fundo (branco)
 LINE_COLOR = (0, 0, 0)      # Cor da linha (preto)
 
@@ -24,9 +24,8 @@ def main():
     pygame.display.set_caption("Desenho de Linha Analítico")
 
     # Coordenadas dos pontos inicial e final da linha
-    x1, y1, x2, y2 = 200,30,220,80
-    a,b,c,d = 150, 30,175,80
-    e,f,g,h = 100, 30,150,80
+    x1, y1, x2, y2 = 10, 80, 10, 220
+    
     running = True
     while running:
         for event in pygame.event.get():

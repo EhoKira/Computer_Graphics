@@ -33,9 +33,8 @@ def main():
     pygame.display.set_caption("Desenho de Linha DDA")
 
     # Coordenadas dos pontos inicial e final da linha
-    x1, y1, x2, y2 = 200,30,220,80
-    a,b,c,d = 150, 30,175,80
-    e,f,g,h = 100, 30,150,80
+    x1, y1, x2, y2 = 150, 30,175,80
+    
     running = True
     while running:
         for event in pygame.event.get():
@@ -44,7 +43,7 @@ def main():
 
         screen.fill(BG_COLOR)
             
-        DDA(screen, a,b,c,d)
+        DDA(screen, x1,y1,x2,y2)
                 
         pygame.display.flip()
 
