@@ -3,7 +3,7 @@ import sys
 import math
 
 # Configurações da tela
-WIDTH, HEIGHT = 600, 600
+WIDTH, HEIGHT = 800, 800
 BG_COLOR = (0, 0, 0)  # Cor de fundo preto
 LINE_COLOR = (0,255,255)      # Cor da linha ciano
 centrox = WIDTH // 2  # Coordenada x do centro da tela 

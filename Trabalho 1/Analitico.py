@@ -1,10 +1,10 @@
 import pygame
 import sys
 
-WIDTH, HEIGHT = 500, 500
+WIDTH, HEIGHT = 650, 650
 BG_COLOR = (0, 0, 0)  # Cor de fundo (branco)
 LINE_COLOR = (0,255,255)  # Cor da linha ciano
-thickness = 3  # Ajuste aqui para mudar a espessura da linha
+thickness = 1  # Ajuste aqui para mudar a espessura da linha
 
 # Função do Algoritmo Analítico com Espessura Ajustável
 def analitico(screen, x1, y1, x2, y2, thickness=3):
@@ -25,7 +25,7 @@ def main():
     pygame.display.set_caption("Desenho de Linha Analítico")
 
     # Coordenadas dos pontos inicial e final da linha
-    x1, y1, x2, y2 = 50, 40, 400, 180 # x1, y1, x2, y2 = 10, 40, 100, 80
+    x1, y1, x2, y2 = 0, 20, 400, 100
     
     running = True
     while running:

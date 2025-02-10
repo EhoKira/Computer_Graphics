@@ -12,7 +12,7 @@ centroy = HEIGHT // 2 # Coordenada y do centro da tela
 def circuloParametrica(screen, raio):
     x  = centrox + raio 
     y = centroy
-    for t in range(1, 360): 
+    for t in range(-1, 360): 
         pygame.draw.rect(screen, LINE_COLOR, pygame.Rect(x, y, 1, 1))
         x = centrox + raio * math.cos((math.pi * t)/180)  
         y = centroy + raio * math.sin((math.pi * t)/180)
