@@ -6,6 +6,22 @@ import scipy.special  # Para calcular o binômio de Newton
 def bernstein(n, i, t):
     return scipy.special.comb(n, i) * (t ** i) * ((1 - t) ** (n - i))
 
+# Função para subdividir os pontos de controle
+def subdivide_curve(points):
+    M01 = (points[0] + points[1]) / 2
+    M12 = (points[1] + points[2]) / 2
+    M23 = (points[2] + points[3]) / 2
+
+    M012 = (M01 + M12) / 2
+    M123 = (M12 + M23) / 2
+
+    M0123 = (M012 + M123) / 2
+
+    first_half = [points[0], M01, M012, M0123]
+    second_half = [M0123, M123, M23, points[3]]
+
+    return first_half, second_half, M0123
+
 # Função para calcular a curva de Bézier usando a equação paramétrica
 def bezier_curve(points, num_points=100):
     n = len(points) - 1
@@ -18,25 +34,30 @@ def bezier_curve(points, num_points=100):
     return curve
 
 # Função recursiva para calcular a curva de Bézier usando o algoritmo de Casteljau
-def casteljau(points, t):
-    if len(points) == 1:
-        return points[0]
+def casteljau(points, t=0.005):
+    curve_points = []
     
-    new_points = [(1 - t) * points[i] + t * points[i + 1] for i in range(len(points) - 1)]
-    return casteljau(new_points, t)
+    def recursive_subdivision(ctrl_points):
+        p0, p3 = ctrl_points[0], ctrl_points[-1]
+        dist = np.linalg.norm(p3 - p0)
 
-# Função para gerar pontos da curva de Bézier via Casteljau
-def bezier_casteljau(points, num_points=100):
-    t_values = np.linspace(0, 1, num_points)
-    return np.array([casteljau(points, t) for t in t_values])
+        if dist > t:
+            first_half, second_half, midpoint = subdivide_curve(ctrl_points)
+            recursive_subdivision(first_half)
+            recursive_subdivision(second_half)
+        else:
+            curve_points.append(ctrl_points[-1])
+
+    recursive_subdivision(points)
+    return np.array(curve_points)
 
 # Pontos de controle
 control_points = np.array([[0, 0], [1, 3], [3, 3], [4, 0]])
-control_points_2 = np.array([[0, 0], [1, 3.5], [3, 3.5], [4, 0]])
+control_points_2 = np.array([[0, 0], [1, 3], [3, 2], [4, 0]])
 
 # Geração das curvas
 curve_parametric = bezier_curve(control_points)
-curve_casteljau = bezier_casteljau(control_points_2)
+curve_casteljau = casteljau(control_points_2)
 
 # Plot das curvas
 plt.figure(figsize=(8, 6))
