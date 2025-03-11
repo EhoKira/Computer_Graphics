@@ -67,11 +67,16 @@ clip_window = [("left", -1), ("right", 1), ("bottom", -1), ("top", 1)]
 
 # Criar gráfico com subplots
 fig, axes = plt.subplots(2, 2, figsize=(10, 10))
-axes = axes.flatten()
+axes = axes.flatten()   
 
 for ax, (name, polygon) in zip(axes, polygons.items()):
     # Aplicar recorte
     clipped_polygon = sutherland_hodgman_clip(polygon, clip_window)
+    
+    # Exibir os novos pontos após o recorte
+    print(f"\nPolígono {name}")
+    for i, point in enumerate(clipped_polygon):
+        print(f"Ponto {i}: {point}")
 
     # Desenhar a janela de recorte
     window_x = [-1, 1, 1, -1, -1]
