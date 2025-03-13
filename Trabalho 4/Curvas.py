@@ -53,7 +53,7 @@ def casteljau(points, t=0.005):
 
 # Pontos de controle
 control_points = np.array([[0, 0], [1, 3], [3, 3], [4, 0]])
-control_points_2 = np.array([[0, 0], [1, 3], [3, 2], [4, 0]])
+control_points_2 = np.array([[0, 0], [1, 3], [3, 3], [4, 0]])
 
 # Geração das curvas
 curve_parametric = bezier_curve(control_points)
